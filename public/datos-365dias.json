@@ -735,13 +735,15 @@
     },
     "efemeride": {
       "titulo": "Batalla de Kunovica",
-      "descripcion": "battle in 1444"
+      "descripcion": "battle in 1444",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q12754327"
     },
     "hitosCientificos": [
       {
         "titulo": "(1079) Mimosa",
         "descripcion": "asteroide",
-        "autor": "George Van Biesbroeck"
+        "autor": "George Van Biesbroeck",
+        "wikidataUrl": "https://www.wikidata.org/wiki/Q132944"
       },
       {
         "titulo": "(555) Norma",
@@ -784,11 +786,13 @@
     "fecha": "01-15",
     "personaje": {
       "nombre": "Francisco Suárez",
-      "descripcion": "teólogo, filósofo y jurista jesuita español (1548-1617)"
+      "descripcion": "teólogo, filósofo y jurista jesuita español (1548-1617)",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q316339"
     },
     "efemeride": {
       "titulo": "Batalla de la Puerta Persa",
-      "descripcion": "battle between Alexander the Great and Ariobarzanes near Persepolis in a small mountainpass known as the Persian gate along the Royal road"
+      "descripcion": "battle between Alexander the Great and Ariobarzanes near Persepolis in a small mountainpass known as the Persian gate along the Royal road",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q112016"
     },
     "hitosCientificos": [
       {
@@ -1006,7 +1010,8 @@
     "fecha": "01-19",
     "personaje": {
       "nombre": "Gregorio XV",
-      "descripcion": "234.º papa de la Iglesia católica"
+      "descripcion": "234.º papa de la Iglesia católica",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q132692"
     },
     "efemeride": {
       "titulo": "Batalla de Bogesund",
@@ -1397,7 +1402,8 @@
     "fecha": "01-26",
     "personaje": {
       "nombre": "Dōgen",
-      "descripcion": "Maestro budista Zen Japonés"
+      "descripcion": "Maestro budista Zen Japonés",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q318064"
     },
     "efemeride": {
       "titulo": "Batalla de Talikota",
@@ -1577,7 +1583,8 @@
       {
         "titulo": "Isla Henderson",
         "descripcion": "atolón en las Islas Pitcairn, Territorios Británicos de Ultramar",
-        "autor": ""
+        "autor": "",
+        "wikidataUrl": "https://www.wikidata.org/wiki/Q379759"
       },
       {
         "titulo": "(180) Garumna",
@@ -1620,17 +1627,20 @@
     "fecha": "01-30",
     "personaje": {
       "nombre": "Li Shimin",
-      "descripcion": "segundo emperador de la dinastía Tang del Imperio chino"
+      "descripcion": "segundo emperador de la dinastía Tang del Imperio chino",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q9701"
     },
     "efemeride": {
       "titulo": "Mise of Amiens",
-      "descripcion": "1264 settlement between King Henry III of England and Simon de Montfort"
+      "descripcion": "1264 settlement between King Henry III of England and Simon de Montfort",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q1285054"
     },
     "hitosCientificos": [
       {
         "titulo": "(2456) Palamedes",
         "descripcion": "asteroide",
-        "autor": "Observatorio de la Montaña Púrpura"
+        "autor": "Observatorio de la Montaña Púrpura",
+        "wikidataUrl": "https://www.wikidata.org/wiki/Q149078"
       },
       {
         "titulo": "Península de Eduardo VII",
@@ -2799,7 +2809,8 @@
       {
         "titulo": "(160) Una",
         "descripcion": "asteroide n.º 160 de la serie",
-        "autor": "Christian Heinrich Friedrich Peters"
+        "autor": "Christian Heinrich Friedrich Peters",
+        "wikidataUrl": "https://www.wikidata.org/wiki/Q141268"
       },
       {
         "titulo": "(288) Glauke",
@@ -2841,17 +2852,20 @@
     "fecha": "02-21",
     "personaje": {
       "nombre": "Gregorio XIV",
-      "descripcion": "229.º papa de la Iglesia Católica"
+      "descripcion": "229.º papa de la Iglesia Católica",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q171622"
     },
     "efemeride": {
       "titulo": "Elección papal de 1130",
-      "descripcion": "1130 election of the Catholic pope"
+      "descripcion": "1130 election of the Catholic pope",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q1358726"
     },
     "hitosCientificos": [
       {
         "titulo": "(586) Thekla",
         "descripcion": "asteroide",
-        "autor": "Max Wolf"
+        "autor": "Max Wolf",
+        "wikidataUrl": "https://www.wikidata.org/wiki/Q155694"
       },
       {
         "titulo": "(818) Kapteynia",
@@ -3064,7 +3078,8 @@
     },
     "efemeride": {
       "titulo": "Batalla de Rudau",
-      "descripcion": "1370 battle"
+      "descripcion": "1370 battle",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q558503"
     },
     "hitosCientificos": [
       {
@@ -3455,7 +3470,8 @@
     },
     "efemeride": {
       "titulo": "Pilėnai",
-      "descripcion": "fortress in medieval Lithuania"
+      "descripcion": "fortress in medieval Lithuania",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q7194564"
     },
     "hitosCientificos": [
       {
@@ -3673,17 +3689,20 @@
     "fecha": "03-08",
     "personaje": {
       "nombre": "Beyazid I",
-      "descripcion": "sultán del Imperio otomano (1389-1402)"
+      "descripcion": "sultán del Imperio otomano (1389-1402)",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q128358"
     },
     "efemeride": {
       "titulo": "Tratado de Berwick",
-      "descripcion": "1560 treaty between Scottish nobles and England"
+      "descripcion": "1560 treaty between Scottish nobles and England",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q7836985"
     },
     "hitosCientificos": [
       {
         "titulo": "(65) Cybele",
         "descripcion": "asteroide",
-        "autor": "Wilhelm Tempel"
+        "autor": "Wilhelm Tempel",
+        "wikidataUrl": "https://www.wikidata.org/wiki/Q156149"
       },
       {
         "titulo": "(273) Atropos",
@@ -3726,7 +3745,8 @@
     "fecha": "03-09",
     "personaje": {
       "nombre": "Paulo III",
-      "descripcion": "220.º papa de la Iglesia católica"
+      "descripcion": "220.º papa de la Iglesia católica",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q133001"
     },
     "efemeride": {
       "titulo": "Battle on the Nemiga River",
@@ -5126,7 +5146,8 @@
       {
         "titulo": "(119) Althaea",
         "descripcion": "asteroide",
-        "autor": "James Craig Watson"
+        "autor": "James Craig Watson",
+        "wikidataUrl": "https://www.wikidata.org/wiki/Q136881"
       },
       {
         "titulo": "(256) Walpurga",
@@ -5169,17 +5190,20 @@
     "fecha": "04-04",
     "personaje": {
       "nombre": "Abraham Ortelius",
-      "descripcion": "geógrafo y cartógrafo flamenco"
+      "descripcion": "geógrafo y cartógrafo flamenco",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q232916"
     },
     "efemeride": {
       "titulo": "Batalla de Tapso",
-      "descripcion": "battle in Caesar's Civil War"
+      "descripcion": "battle in Caesar's Civil War",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q849653"
     },
     "hitosCientificos": [
       {
         "titulo": "(53) Kalypso",
         "descripcion": "asteroide",
-        "autor": "Karl Theodor Robert Luther"
+        "autor": "Karl Theodor Robert Luther",
+        "wikidataUrl": "https://www.wikidata.org/wiki/Q155238"
       },
       {
         "titulo": "(1716) Peter",
@@ -5221,7 +5245,8 @@
     "fecha": "04-05",
     "personaje": {
       "nombre": "Thomas Hobbes",
-      "descripcion": "filósofo inglés"
+      "descripcion": "filósofo inglés",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q37621"
     },
     "efemeride": {
       "titulo": "Crucifixión de Jesús",
@@ -5781,13 +5806,15 @@
     },
     "efemeride": {
       "titulo": "Batalla de Formigny",
-      "descripcion": "Una batalla durante la guerra de los cien años"
+      "descripcion": "Una batalla durante la guerra de los cien años",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q1140646"
     },
     "hitosCientificos": [
       {
         "titulo": "Galaxia espiral M58",
         "descripcion": "galaxia espiral",
-        "autor": "Charles Messier"
+        "autor": "Charles Messier",
+        "wikidataUrl": "https://www.wikidata.org/wiki/Q13970"
       },
       {
         "titulo": "(43) Ariadne",
@@ -5830,7 +5857,8 @@
     "fecha": "04-16",
     "personaje": {
       "nombre": "Tamerlán",
-      "descripcion": "conquistador, líder militar y político turco"
+      "descripcion": "conquistador, líder militar y político turco",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q8462"
     },
     "efemeride": {
       "titulo": "Batalla de Liegnitz",
@@ -6008,7 +6036,8 @@
       {
         "titulo": "(35) Leukothea",
         "descripcion": "asteroide",
-        "autor": "Karl Theodor Robert Luther"
+        "autor": "Karl Theodor Robert Luther",
+        "wikidataUrl": "https://www.wikidata.org/wiki/Q151709"
       },
       {
         "titulo": "(110) Lydia",
@@ -6051,7 +6080,8 @@
     "fecha": "04-20",
     "personaje": {
       "nombre": "Ludovico Pío",
-      "descripcion": "emperador carolingio (813-840)"
+      "descripcion": "emperador carolingio (813-840)",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q43974"
     },
     "efemeride": {
       "titulo": "Sitio de Constantinopla (1204)",
@@ -7273,7 +7303,8 @@
       {
         "titulo": "(121) Hermione",
         "descripcion": "asteroide",
-        "autor": "James Craig Watson"
+        "autor": "James Craig Watson",
+        "wikidataUrl": "https://www.wikidata.org/wiki/Q137019"
       },
       {
         "titulo": "(870) Manto",
@@ -7315,7 +7346,8 @@
     "fecha": "05-13",
     "personaje": {
       "nombre": "Roberto del Sacro Imperio Romano Germánico",
-      "descripcion": "conde palatino del Rin"
+      "descripcion": "conde palatino del Rin",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q57326"
     },
     "efemeride": {
       "titulo": "Batalla de Grotniki",
@@ -7491,7 +7523,8 @@
       {
         "titulo": "láser",
         "descripcion": "dispositivo que genera un haz de luz coherente",
-        "autor": ""
+        "autor": "",
+        "wikidataUrl": "https://www.wikidata.org/wiki/Q38867"
       },
       {
         "titulo": "(87) Sylvia",
@@ -7533,11 +7566,13 @@
     "fecha": "05-17",
     "personaje": {
       "nombre": "Luis I de Borbón-Condé",
-      "descripcion": "I Príncipe de Condé"
+      "descripcion": "I Príncipe de Condé",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q316913"
     },
     "efemeride": {
       "titulo": "Tratado de Windsor",
-      "descripcion": "tratado entre Inglaterra y Portugal"
+      "descripcion": "tratado entre Inglaterra y Portugal",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q2518953"
     },
     "hitosCientificos": [
       {
@@ -8094,7 +8129,8 @@
       {
         "titulo": "(44) Nysa",
         "descripcion": "asteroide",
-        "autor": "Hermann Mayer Salomon Goldschmidt"
+        "autor": "Hermann Mayer Salomon Goldschmidt",
+        "wikidataUrl": "https://www.wikidata.org/wiki/Q110037"
       },
       {
         "titulo": "(267) Tirza",
@@ -8136,17 +8172,20 @@
     "fecha": "05-28",
     "personaje": {
       "nombre": "Cao Pi",
-      "descripcion": "Cao Wei Emperror (187-226)"
+      "descripcion": "Cao Wei Emperror (187-226)",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q313333"
     },
     "efemeride": {
       "titulo": "Tratado de París (1303)",
-      "descripcion": "Peace treaty signed between England and France on 20 May 1303 ending the Anglo-French War"
+      "descripcion": "Peace treaty signed between England and France on 20 May 1303 ending the Anglo-French War",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q1964075"
     },
     "hitosCientificos": [
       {
         "titulo": "Messier 9",
         "descripcion": "cúmulo globular",
-        "autor": "Charles Messier"
+        "autor": "Charles Messier",
+        "wikidataUrl": "https://www.wikidata.org/wiki/Q11258"
       },
       {
         "titulo": "(99) Dike",
@@ -8188,7 +8227,8 @@
     "fecha": "05-29",
     "personaje": {
       "nombre": "Felipe I de Francia",
-      "descripcion": "rey de Francia (1060-1108)"
+      "descripcion": "rey de Francia (1060-1108)",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q58907"
     },
     "efemeride": {
       "titulo": "batalla de Dandanaqan",
@@ -9571,7 +9611,8 @@
       {
         "titulo": "(1022) Olympiada",
         "descripcion": "asteroide",
-        "autor": "Vladímir Albitski"
+        "autor": "Vladímir Albitski",
+        "wikidataUrl": "https://www.wikidata.org/wiki/Q11565"
       },
       {
         "titulo": "(512) Taurinensis",
@@ -9613,17 +9654,20 @@
     "fecha": "06-24",
     "personaje": {
       "nombre": "Eduardo I de Inglaterra",
-      "descripcion": "rey de Inglaterra (1272-1307)"
+      "descripcion": "rey de Inglaterra (1272-1307)",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q57798"
     },
     "efemeride": {
       "titulo": "batalla de Civitate",
-      "descripcion": "batalla del siglo XI"
+      "descripcion": "batalla del siglo XI",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q61100"
     },
     "hitosCientificos": [
       {
         "titulo": "(18) Melpomene",
         "descripcion": "asteroide",
-        "autor": "John Russell Hind"
+        "autor": "John Russell Hind",
+        "wikidataUrl": "https://www.wikidata.org/wiki/Q117550"
       },
       {
         "titulo": "(789) Lena",
@@ -10216,11 +10260,13 @@
     "fecha": "07-05",
     "personaje": {
       "nombre": "Manuel II Paleólogo",
-      "descripcion": "Emperador bizantino (r. 1391-1425)"
+      "descripcion": "Emperador bizantino (r. 1391-1425)",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q37097"
     },
     "efemeride": {
       "titulo": "Ager sanguinis",
-      "descripcion": "near Sarmada in Syria on June 28, 1119"
+      "descripcion": "near Sarmada in Syria on June 28, 1119",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q622184"
     },
     "hitosCientificos": [
       {
@@ -10435,17 +10481,20 @@
     "fecha": "07-09",
     "personaje": {
       "nombre": "Carlos VIII de Francia",
-      "descripcion": "Rey de Francia (1483-1498)"
+      "descripcion": "Rey de Francia (1483-1498)",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q134452"
     },
     "efemeride": {
       "titulo": "batalla de Nagashino",
-      "descripcion": "batalla de 1575 en Mikawa, Japón"
+      "descripcion": "batalla de 1575 en Mikawa, Japón",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q428369"
     },
     "hitosCientificos": [
       {
         "titulo": "(199) Byblis",
         "descripcion": "asteroide",
-        "autor": "Christian Heinrich Friedrich Peters"
+        "autor": "Christian Heinrich Friedrich Peters",
+        "wikidataUrl": "https://www.wikidata.org/wiki/Q146570"
       },
       {
         "titulo": "(487) Venetia",
@@ -11038,7 +11087,8 @@
     "fecha": "07-20",
     "personaje": {
       "nombre": "Juan Calvino",
-      "descripcion": "teólogo francés"
+      "descripcion": "teólogo francés",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q37577"
     },
     "efemeride": {
       "titulo": "Guerra de Esmalcalda",
@@ -11871,7 +11921,8 @@
       {
         "titulo": "Q50650",
         "descripcion": "galaxia irregular localizada en la constelación de Sculptor",
-        "autor": "James Dunlop"
+        "autor": "James Dunlop",
+        "wikidataUrl": "https://www.wikidata.org/wiki/Q50650"
       },
       {
         "titulo": "(541) Deborah",
@@ -11913,11 +11964,13 @@
     "fecha": "08-05",
     "personaje": {
       "nombre": "Ludovico Sforza",
-      "descripcion": "noble italiano"
+      "descripcion": "noble italiano",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q236853"
     },
     "efemeride": {
       "titulo": "Rebelión de Hōgen",
-      "descripcion": "guerra civil japonesa en 1156"
+      "descripcion": "guerra civil japonesa en 1156",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q842357"
     },
     "hitosCientificos": [
       {
@@ -12471,7 +12524,8 @@
       {
         "titulo": "(101) Helena",
         "descripcion": "asteroide",
-        "autor": "James Craig Watson"
+        "autor": "James Craig Watson",
+        "wikidataUrl": "https://www.wikidata.org/wiki/Q11543"
       },
       {
         "titulo": "señal Wow!",
@@ -12513,17 +12567,20 @@
     "fecha": "08-16",
     "personaje": {
       "nombre": "Alberto II de Habsburgo",
-      "descripcion": "trigésimo primer Rey del Reino de Hungría y Rey de Romanos (Rey de Alemania)"
+      "descripcion": "trigésimo primer Rey del Reino de Hungría y Rey de Romanos (Rey de Alemania)",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q157112"
     },
     "efemeride": {
       "titulo": "terremoto de Creta de 1303",
-      "descripcion": "terremoto sucedido el 8 de agosto de 1303"
+      "descripcion": "terremoto sucedido el 8 de agosto de 1303",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q1485683"
     },
     "hitosCientificos": [
       {
         "titulo": "Febe",
         "descripcion": "satélite natural de Saturno",
-        "autor": "William Henry Pickering"
+        "autor": "William Henry Pickering",
+        "wikidataUrl": "https://www.wikidata.org/wiki/Q11921639"
       },
       {
         "titulo": "Islas Diómedes",
@@ -12566,7 +12623,8 @@
     "fecha": "08-17",
     "personaje": {
       "nombre": "Isabel Báthory",
-      "descripcion": "condesa húngara y presunta asesina en serie"
+      "descripcion": "condesa húngara y presunta asesina en serie",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q170846"
     },
     "efemeride": {
       "titulo": "batalla de la Puerta de Trajano",
@@ -12742,7 +12800,8 @@
       {
         "titulo": "Fernando de Noroña",
         "descripcion": "archipiélago de Brasil",
-        "autor": "Américo Vespucio"
+        "autor": "Américo Vespucio",
+        "wikidataUrl": "https://www.wikidata.org/wiki/Q175057"
       },
       {
         "titulo": "Q31126",
@@ -13127,7 +13186,8 @@
       {
         "titulo": "Messier 75",
         "descripcion": "cúmulo globular",
-        "autor": "Pierre Méchain"
+        "autor": "Pierre Méchain",
+        "wikidataUrl": "https://www.wikidata.org/wiki/Q14014"
       },
       {
         "titulo": "(240) Vanadis",
@@ -13997,13 +14057,15 @@
     },
     "efemeride": {
       "titulo": "Jungjong coup",
-      "descripcion": "Joseon coup (1506)"
+      "descripcion": "Joseon coup (1506)",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q626301"
     },
     "hitosCientificos": [
       {
         "titulo": "Cueva de Lascaux",
         "descripcion": "gruta en Francia",
-        "autor": "Marcel Ravidat"
+        "autor": "Marcel Ravidat",
+        "wikidataUrl": "https://www.wikidata.org/wiki/Q172125"
       },
       {
         "titulo": "(117) Lomia",
@@ -14216,13 +14278,15 @@
     },
     "efemeride": {
       "titulo": "Hégira",
-      "descripcion": "migración de Mahoma de La Meca a Medina"
+      "descripcion": "migración de Mahoma de La Meca a Medina",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q131482"
     },
     "hitosCientificos": [
       {
         "titulo": "Hiperión",
         "descripcion": "satélite natural de Saturno",
-        "autor": "William Lassell"
+        "autor": "William Lassell",
+        "wikidataUrl": "https://www.wikidata.org/wiki/Q134270"
       },
       {
         "titulo": "(105) Artemis",
@@ -14814,17 +14878,20 @@
     "fecha": "09-27",
     "personaje": {
       "nombre": "Paulo V",
-      "descripcion": "233.er papa de la Iglesia Católica"
+      "descripcion": "233.er papa de la Iglesia Católica",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q132711"
     },
     "efemeride": {
       "titulo": "batalla de Płowce",
-      "descripcion": "batalla en 1331"
+      "descripcion": "batalla en 1331",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q1049697"
     },
     "hitosCientificos": [
       {
         "titulo": "Q33498",
         "descripcion": "galaxia espiral localizada en la constelación de Sculptor",
-        "autor": "John Herschel"
+        "autor": "John Herschel",
+        "wikidataUrl": "https://www.wikidata.org/wiki/Q33498"
       },
       {
         "titulo": "Q495791",
@@ -14867,11 +14934,13 @@
     "fecha": "09-28",
     "personaje": {
       "nombre": "Pedro de Cosme de Médici",
-      "descripcion": "noble y político italiano"
+      "descripcion": "noble y político italiano",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q299663"
     },
     "efemeride": {
       "titulo": "Batalla de Tinchebray",
-      "descripcion": "1106 battle during the invasion of Normandy by Henry I"
+      "descripcion": "1106 battle during the invasion of Normandy by Henry I",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q1587893"
     },
     "hitosCientificos": [
       {
@@ -15428,7 +15497,8 @@
       {
         "titulo": "SN 1604",
         "descripcion": "supernova",
-        "autor": ""
+        "autor": "",
+        "wikidataUrl": "https://www.wikidata.org/wiki/Q320670"
       },
       {
         "titulo": "Q50652",
@@ -16295,13 +16365,15 @@
     },
     "efemeride": {
       "titulo": "batalla de Dirraquio (1081)",
-      "descripcion": "1081 battle in present-day Albania"
+      "descripcion": "1081 battle in present-day Albania",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q1987213"
     },
     "hitosCientificos": [
       {
         "titulo": "Umbriel",
         "descripcion": "satélite natural de Urano",
-        "autor": "William Lassell"
+        "autor": "William Lassell",
+        "wikidataUrl": "https://www.wikidata.org/wiki/Q3338"
       },
       {
         "titulo": "Ariel",
@@ -16343,11 +16415,13 @@
     "fecha": "10-25",
     "personaje": {
       "nombre": "Akbar",
-      "descripcion": "gobernante del Imperio mogol desde 1556 hasta 1605"
+      "descripcion": "gobernante del Imperio mogol desde 1556 hasta 1605",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q8597"
     },
     "efemeride": {
       "titulo": "batalla del Puente",
-      "descripcion": "batalla entre el Califato ortodoxo y el Imperio sasánida"
+      "descripcion": "batalla entre el Califato ortodoxo y el Imperio sasánida",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q2067496"
     },
     "hitosCientificos": [
       {
@@ -16561,7 +16635,8 @@
     "fecha": "10-29",
     "personaje": {
       "nombre": "Abu Bakr as-Siddiq",
-      "descripcion": "compañero de Mahoma, 1er califa del Islam"
+      "descripcion": "compañero de Mahoma, 1er califa del Islam",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q334923"
     },
     "efemeride": {
       "titulo": "Batalla del Puente Milvio",
@@ -16946,7 +17021,8 @@
     "fecha": "11-05",
     "personaje": {
       "nombre": "Umar II",
-      "descripcion": "califa Omeya de Damasco"
+      "descripcion": "califa Omeya de Damasco",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q298403"
     },
     "efemeride": {
       "titulo": "Batalla de Panipat (1556)",
@@ -17122,7 +17198,8 @@
       {
         "titulo": "(27) Euterpe",
         "descripcion": "asteroide",
-        "autor": "John Russell Hind"
+        "autor": "John Russell Hind",
+        "wikidataUrl": "https://www.wikidata.org/wiki/Q149974"
       },
       {
         "titulo": "(155) Scylla",
@@ -17164,17 +17241,20 @@
     "fecha": "11-09",
     "personaje": {
       "nombre": "Constanza I de Sicilia",
-      "descripcion": "Reina de Sicilia (1194-1198)"
+      "descripcion": "Reina de Sicilia (1194-1198)",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q170335"
     },
     "efemeride": {
       "titulo": "Banquete de las castañas",
-      "descripcion": "fiesta celebrada en Roma, el 30 de octubre de 1501, en el Palacio Apostólico Vaticano"
+      "descripcion": "fiesta celebrada en Roma, el 30 de octubre de 1501, en el Palacio Apostólico Vaticano",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q2665649"
     },
     "hitosCientificos": [
       {
         "titulo": "(966) Muschi",
         "descripcion": "asteroide",
-        "autor": "Walter Baade"
+        "autor": "Walter Baade",
+        "wikidataUrl": "https://www.wikidata.org/wiki/Q158342"
       },
       {
         "titulo": "(1103) Sequoia",
@@ -18591,13 +18671,15 @@
     },
     "efemeride": {
       "titulo": "conquista portuguesa de Goa",
-      "descripcion": "1510 capture of the Indian city of Goa by the Portuguese Empire"
+      "descripcion": "1510 capture of the Indian city of Goa by the Portuguese Empire",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q2357384"
     },
     "hitosCientificos": [
       {
         "titulo": "(1866) Sisyphus",
         "descripcion": "asteroide",
-        "autor": "Paul Wild"
+        "autor": "Paul Wild",
+        "wikidataUrl": "https://www.wikidata.org/wiki/Q144962"
       },
       {
         "titulo": "Q584728",
@@ -18639,17 +18721,20 @@
     "fecha": "12-06",
     "personaje": {
       "nombre": "Horacio",
-      "descripcion": "poeta lírico y satírico en lengua latina"
+      "descripcion": "poeta lírico y satírico en lengua latina",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q16290301"
     },
     "efemeride": {
       "titulo": "Batalla de Krücken",
-      "descripcion": "1249 battle between Teutonic Knights and Old Prussians"
+      "descripcion": "1249 battle between Teutonic Knights and Old Prussians",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q3303638"
     },
     "hitosCientificos": [
       {
         "titulo": "Q19621",
         "descripcion": "galaxia en la constelación de Piscis",
-        "autor": "William Herschel"
+        "autor": "William Herschel",
+        "wikidataUrl": "https://www.wikidata.org/wiki/Q19621"
       },
       {
         "titulo": "Busto de Nefertiti",
@@ -18691,7 +18776,8 @@
     "fecha": "12-07",
     "personaje": {
       "nombre": "Ana Comneno",
-      "descripcion": "historiadora bizantina"
+      "descripcion": "historiadora bizantina",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q179284"
     },
     "efemeride": {
       "titulo": "Concilio de Letrán IV",
@@ -19247,13 +19333,15 @@
     },
     "efemeride": {
       "titulo": "batalla de Tricamerón",
-      "descripcion": "battle between Byzantine Empire and Vandal Kingdom during Vandalic War"
+      "descripcion": "battle between Byzantine Empire and Vandal Kingdom during Vandalic War",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q598261"
     },
     "hitosCientificos": [
       {
         "titulo": "(580) Selene",
         "descripcion": "asteroide",
-        "autor": "Max Wolf"
+        "autor": "Max Wolf",
+        "wikidataUrl": "https://www.wikidata.org/wiki/Q155663"
       },
       {
         "titulo": "(1270) Datura",
@@ -19466,13 +19554,15 @@
     },
     "efemeride": {
       "titulo": "Batalla de Zlatitsa",
-      "descripcion": "1443 battle in present-day Bulgaria"
+      "descripcion": "1443 battle in present-day Bulgaria",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q18639123"
     },
     "hitosCientificos": [
       {
         "titulo": "(1509) Esclangona",
         "descripcion": "asteroide",
-        "autor": "André Patry"
+        "autor": "André Patry",
+        "wikidataUrl": "https://www.wikidata.org/wiki/Q63853"
       },
       {
         "titulo": "NGC 193",
@@ -20059,8 +20149,8 @@
       ]
     }
   },
-  "_wikidataUrlsActualizadoEn": "2026-08-04T09:31:12.811Z",
-  "_wikidataUrlsAgregadas": 133,
+  "_wikidataUrlsActualizadoEn": "2026-08-04T11:56:21.544Z",
+  "_wikidataUrlsAgregadas": 54,
   "02-29": {
     "fecha": "02-29",
     "santoral": {
