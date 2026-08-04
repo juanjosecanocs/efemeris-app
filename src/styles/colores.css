@@ -1,0 +1,13 @@
+/* Paleta de colores por item del menú lateral (ver src/utils/layoutConstants.js,
+   que es la fuente de verdad para JS). Estos tokens quedan disponibles como
+   utilidades de Tailwind v4 (bg-personaje, text-efemeride, border-cita, etc.)
+   para quien prefiera clases en vez de estilos inline. */
+@theme {
+  --color-personaje: #9333ea;
+  --color-efemeride: #f59e0b;
+  --color-cita: #6366f1;
+  --color-santoral: #ec4899;
+  --color-refran: #10b981;
+  --color-hito: #3b82f6;
+  --color-curiosidad: #f97316;
+}
