@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "precalculate": "node precalculate.js",
+    "generate-histoku": "node generate-histoku-365.js",
     "generate-favicon": "node src/scripts/generate-favicon.js",
     "prebuild": "npm run generate-favicon"
   },

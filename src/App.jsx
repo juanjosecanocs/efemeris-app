@@ -261,6 +261,7 @@ function App() {
                   color={colorSeleccionado}
                   mensajeSinDatos={mensajeSinDatos}
                   alturaMinima={rectSeleccionado.alturaColumna}
+                  fecha={fecha}
                 />
 
                 {/* CardDinamica ahora tiene borde izquierdo normal (coloreado)
