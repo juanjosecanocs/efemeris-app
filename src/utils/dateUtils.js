@@ -1,6 +1,5 @@
 import {
   addDays,
-  subDays,
   format,
   getDayOfYear,
   isSameDay,
@@ -20,17 +19,6 @@ export function getWeekOfYear(date) {
   return Math.min(52, Math.ceil(dia / 7))
 }
 
-// Últimos `dias` días antes de `date`, orden ascendente (el más antiguo primero,
-// ayer al final, cerca de "hoy" en la grilla).
-export function getLastDaysArray(date, dias) {
-  return Array.from({ length: dias }, (_, i) => subDays(date, dias - i))
-}
-
-// Próximos `dias` días después de `date`, orden ascendente (mañana primero).
-export function getNextDaysArray(date, dias) {
-  return Array.from({ length: dias }, (_, i) => addDays(date, i + 1))
-}
-
 // "Lun 3 ago"
 export function formatDateShort(date) {
   const texto = format(date, 'EEE d MMM', { locale: es })
@@ -47,7 +35,7 @@ export function isDateAvailable(date, hoy = new Date(), diasFuturosDisponibles =
 }
 
 // Arma la matriz de semanas (7 columnas, lunes a domingo) que cubre por
-// completo un rango de fechas (p.ej. los últimos/próximos 30 días), para
+// completo un rango de fechas (p.ej. todos los días de un mes), para
 // dibujarla como una grilla de calendario real en vez de una lista plana.
 // Las celdas de relleno (fuera del rango pedido, pero necesarias para
 // completar la semana) van marcadas con `fueraDeRango: true`.

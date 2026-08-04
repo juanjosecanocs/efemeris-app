@@ -2,15 +2,9 @@ import { useState, useMemo, useCallback } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { addDays, subDays } from 'date-fns'
 import { IoChevronBack, IoChevronForward, IoCalendar } from 'react-icons/io5'
-import { getWeekOfYear, getLastDaysArray, getNextDaysArray, isDateAvailable, isSameDay } from '../utils/dateUtils'
+import { getWeekOfYear, isDateAvailable, isSameDay } from '../utils/dateUtils'
 import { formatoFechaLarga } from '../utils/diaCalculos'
 import CalendarGrid from './CalendarGrid'
-
-const DIAS_CALENDARIO = 30
-
-function dentroDelAnio(fecha, inicioAnio, finAnio) {
-  return fecha >= inicioAnio && fecha <= finAnio
-}
 
 function BotonIcono({ onClick, disabled, ariaLabel, children }) {
   return (
@@ -34,15 +28,6 @@ export default function Navegacion({ fechaActual, onFechaChange, datosDisponible
   const finAnio = useMemo(() => new Date(anioActual, 11, 31), [anioActual])
 
   const weekNumber = useMemo(() => getWeekOfYear(fechaActual), [fechaActual])
-
-  const diasAnteriores = useMemo(
-    () => getLastDaysArray(fechaActual, DIAS_CALENDARIO).filter((f) => dentroDelAnio(f, inicioAnio, finAnio)),
-    [fechaActual, inicioAnio, finAnio]
-  )
-  const diasProximos = useMemo(
-    () => getNextDaysArray(fechaActual, DIAS_CALENDARIO).filter((f) => dentroDelAnio(f, inicioAnio, finAnio)),
-    [fechaActual, inicioAnio, finAnio]
-  )
 
   const puedeIrAnterior = fechaActual > inicioAnio
   const puedeIrProximo = fechaActual < finAnio
@@ -82,8 +67,11 @@ export default function Navegacion({ fechaActual, onFechaChange, datosDisponible
     [datosDisponibles.futuras]
   )
 
-  const calendarioAnteriorDeshabilitado = !datosDisponibles.pasadas || diasAnteriores.length === 0
-  const calendarioProximoDeshabilitado = diasProximos.length === 0
+  // Solo se deshabilita el botón entero en el borde real del año (1 ene / 31
+  // dic no tienen "mes anterior"/"próximo" con datos dentro del año); dentro
+  // de ese rango, las flechas ← mes → del panel ya acotan la navegación.
+  const calendarioAnteriorDeshabilitado = !datosDisponibles.pasadas || isSameDay(fechaActual, inicioAnio)
+  const calendarioProximoDeshabilitado = isSameDay(fechaActual, finAnio)
 
   return (
     <div className="mb-4">
@@ -104,12 +92,14 @@ export default function Navegacion({ fechaActual, onFechaChange, datosDisponible
           <AnimatePresence>
             {calendarioAnteriorAbierto && !calendarioAnteriorDeshabilitado && (
               <CalendarGrid
-                titulo="Últimos 30 días"
-                dias={diasAnteriores}
+                titulo="Fechas anteriores"
+                mesInicial={fechaActual}
                 fechaActual={fechaActual}
                 onSelectFecha={handleSelectFecha}
                 onCerrar={() => setCalendarioAnteriorAbierto(false)}
                 disponibleFn={() => true}
+                limiteInferior={inicioAnio}
+                limiteSuperior={finAnio}
                 alineacion="izquierda"
               />
             )}
@@ -133,12 +123,14 @@ export default function Navegacion({ fechaActual, onFechaChange, datosDisponible
           <AnimatePresence>
             {calendarioProximoAbierto && !calendarioProximoDeshabilitado && (
               <CalendarGrid
-                titulo="Próximos 30 días"
-                dias={diasProximos}
+                titulo="Fechas próximas"
+                mesInicial={fechaActual}
                 fechaActual={fechaActual}
                 onSelectFecha={handleSelectFecha}
                 onCerrar={() => setCalendarioProximoAbierto(false)}
                 disponibleFn={climaDisponibleEn}
+                limiteInferior={inicioAnio}
+                limiteSuperior={finAnio}
                 alineacion="derecha"
               />
             )}

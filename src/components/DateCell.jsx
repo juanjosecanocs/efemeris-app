@@ -3,7 +3,7 @@ export default function DateCell({ fecha, isSelected, isDisabled, atenuado, onCl
     <button
       onClick={onClick}
       disabled={isDisabled}
-      className={`relative flex h-9 w-9 items-center justify-center rounded-lg text-[13px] font-medium transition-colors duration-200 sm:h-10 sm:w-10 ${
+      className={`relative flex aspect-square w-full items-center justify-center rounded-lg text-[13px] font-medium transition-colors duration-200 ${
         isDisabled
           ? 'cursor-not-allowed text-gray-300'
           : isSelected

@@ -17,6 +17,11 @@ export function formatoFechaLarga(fecha) {
   return `${diaSemana.charAt(0).toUpperCase() + diaSemana.slice(1)} ${fecha.getDate()} de ${mes}`
 }
 
+export function formatoMesAnio(fecha) {
+  const mes = NOMBRES_MES[fecha.getMonth()]
+  return `${mes.charAt(0).toUpperCase() + mes.slice(1)} ${fecha.getFullYear()}`
+}
+
 // Día del año (1-365) usando un año de referencia no bisiesto, para que la
 // posición en el calendario no dependa del año real ni de si es bisiesto.
 export function diaDelAnio(fecha) {
