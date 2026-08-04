@@ -173,12 +173,12 @@ function App() {
   // Normalizado a { titulo, contenido, autor? } para que CardDinamica no
   // necesite un caso especial por cada uno de los 7 items.
   const datosPorItem = {
-    personaje: { titulo: personaje?.nombre, contenido: personaje?.descripcion },
-    efemeride: { titulo: efemeride?.titulo, contenido: efemeride?.descripcion },
+    personaje: { titulo: personaje?.nombre, contenido: personaje?.descripcion, wikidataUrl: personaje?.wikidataUrl },
+    efemeride: { titulo: efemeride?.titulo, contenido: efemeride?.descripcion, wikidataUrl: efemeride?.wikidataUrl },
     cita: { titulo: cita, contenido: null },
     santoral: { titulo: santoral.length > 0 ? santoral.join(', ') : null, contenido: null },
     refran: { titulo: refran, contenido: null },
-    hito: { titulo: hito?.titulo, contenido: hito?.descripcion, autor: hito?.autor },
+    hito: { titulo: hito?.titulo, contenido: hito?.descripcion, autor: hito?.autor, wikidataUrl: hito?.wikidataUrl },
     curiosidad: { titulo: curiosidad.mensaje, contenido: null },
   }
 

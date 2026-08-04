@@ -37,6 +37,19 @@ export default function CardDinamica({ itemSeleccionado, datos, color, mensajeSi
         )}
 
         {entrada.autor && <p className="mt-2 text-sm text-texto-secundario">— {entrada.autor}</p>}
+
+        {entrada.wikidataUrl && (
+          <a
+            href={entrada.wikidataUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Abre el artículo en Wikidata (nueva pestaña)"
+            className="mt-4 inline-flex items-center gap-1.5 rounded-lg border px-3 py-2 text-sm font-semibold transition-all duration-200 hover:translate-x-0.5 hover:shadow-md sm:w-auto"
+            style={{ borderColor: color, color }}
+          >
+            <span aria-hidden="true">📖</span> Ver en Wikidata →
+          </a>
+        )}
       </motion.section>
     </AnimatePresence>
   )
