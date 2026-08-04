@@ -1,14 +1,15 @@
 {
-  "name": "Efemeris",
+  "name": "Efemeris - Calendario Astronómico Diario",
   "short_name": "Efemeris",
-  "description": "Efemeris - aplicación web progresiva",
+  "description": "App de calendario diario con datos astronómicos, clima, efemérides y curiosidades",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "orientation": "portrait",
-  "background_color": "#0f0f14",
-  "theme_color": "#0f0f14",
+  "orientation": "portrait-primary",
+  "background_color": "#f8f9fa",
+  "theme_color": "#f8f9fa",
   "lang": "es",
+  "categories": ["productivity", "utilities"],
   "icons": [
     {
       "src": "/icons/icon-192.png",
@@ -21,6 +22,15 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Ver hoy",
+      "short_name": "Hoy",
+      "description": "Ver información del día actual",
+      "url": "/",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
     }
   ]
 }
