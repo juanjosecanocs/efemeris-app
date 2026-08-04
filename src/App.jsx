@@ -168,15 +168,23 @@ function App() {
   const personaje = infoDia?.personaje
   const efemeride = infoDia?.efemeride
   const hito = infoDia?.hitosCientificos?.[0]
-  const santoral = infoDia?.santoral?.nombres ?? []
+  const santoralInfo = infoDia?.santoral
+  const santoralNombres = santoralInfo?.nombres ?? []
 
   // Normalizado a { titulo, contenido, autor? } para que CardDinamica no
-  // necesite un caso especial por cada uno de los 7 items.
+  // necesite un caso especial por cada uno de los 7 items. `tipo`/`otros` son
+  // opcionales (vienen del Martirologio Romano vía merge-santoral.js) y solo
+  // los usa la card de santoral.
   const datosPorItem = {
     personaje: { titulo: personaje?.nombre, contenido: personaje?.descripcion, wikidataUrl: personaje?.wikidataUrl },
     efemeride: { titulo: efemeride?.titulo, contenido: efemeride?.descripcion, wikidataUrl: efemeride?.wikidataUrl },
     cita: { titulo: cita, contenido: null },
-    santoral: { titulo: santoral.length > 0 ? santoral.join(', ') : null, contenido: null },
+    santoral: {
+      titulo: santoralInfo?.nombrePrincipal || (santoralNombres.length > 0 ? santoralNombres.join(', ') : null),
+      contenido: null,
+      tipo: santoralInfo?.tipo,
+      otros: santoralInfo?.otros,
+    },
     refran: { titulo: refran, contenido: null },
     hito: { titulo: hito?.titulo, contenido: hito?.descripcion, autor: hito?.autor, wikidataUrl: hito?.wikidataUrl },
     curiosidad: { titulo: curiosidad.mensaje, contenido: null },
