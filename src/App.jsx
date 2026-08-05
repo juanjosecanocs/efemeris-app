@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import './styles/theme.css'
 import { claveFecha, diaDelAnio } from './utils/diaCalculos'
 import { CITAS_MOTIVACIONALES, REFRANES, CURIOSIDADES_ANIMALES, CRONOTECA_SUGERENCIAS, elegirPorDia } from './data/contenidoLocal'
-import { obtenerClima, obtenerSolYLuna, generarCuriosidadMatematica } from './services/apiService'
+import { obtenerClima, obtenerSolYLuna, generarCuriosidadMatematica, obtenerUbicacion } from './services/apiService'
 import { transicionDia } from './utils/animaciones'
 import { ITEMS_MENU, ITEM_POR_DEFECTO } from './utils/layoutConstants'
 import Navegacion from './components/Navegacion'
@@ -66,6 +66,28 @@ function useCoordenadas() {
   }, [])
 
   return coordenadas
+}
+
+// Resuelve municipio/provincia una sola vez, cuando `coordenadas` pasa de
+// null a un valor real (geolocalización con permiso concedido) — no se
+// repite al navegar de día ni corre nunca contra la ubicación por defecto.
+function useUbicacion(coordenadas) {
+  const [ubicacion, setUbicacion] = useState(null)
+
+  useEffect(() => {
+    if (!coordenadas) return
+    let cancelado = false
+
+    obtenerUbicacion(coordenadas).then((resultado) => {
+      if (!cancelado) setUbicacion(resultado)
+    })
+
+    return () => {
+      cancelado = true
+    }
+  }, [coordenadas?.lat, coordenadas?.lon])
+
+  return ubicacion
 }
 
 // El clima depende de la fecha vista: hoy = tiempo real, hasta 5 días a futuro =
@@ -136,6 +158,7 @@ function App() {
   const { datos: cronotecaDatos } = useDatosPrecalculados(CRONOTECA_URL)
   const coordenadas = useCoordenadas()
   const clima = useClima(fecha, coordenadas)
+  const ubicacion = useUbicacion(coordenadas)
   const ahora = useRelojEnVivo()
 
   // Navegacion (y el swipe de abajo) llaman a esto con la nueva fecha; acá se
@@ -260,7 +283,7 @@ function App() {
             }}
             className="space-y-6"
           >
-            <CardClima clima={clima} />
+            <CardClima clima={clima} ubicacion={ubicacion} />
 
             <CardAstros solLuna={solLuna} clima={clima} indice={1} />
 

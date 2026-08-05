@@ -168,6 +168,45 @@ export async function obtenerClima(fecha = new Date(), coordenadas = COORDENADAS
   }
 }
 
+// --- Ubicación (municipio/provincia) vía Nominatim (OpenStreetMap) ---
+//
+// Reverse geocoding, no requiere API key. Solo se usa cuando el usuario dio
+// permiso real de geolocalización (nunca contra COORDENADAS_DEFECTO): el
+// propósito es confirmar al usuario que lo que está viendo corresponde a su
+// posición real, así que mostrar "Almería" para alguien que no dio permiso
+// sería engañoso.
+//
+// Nominatim no tiene un campo "provincia" fijo: en comunidades autónomas
+// uniprovinciales (Madrid, Asturias, Murcia, Navarra, La Rioja...) el dato
+// de provincia no existe porque coincide con la comunidad, así que se cae a
+// `state`. El municipio tampoco usa siempre la misma clave: `city` en
+// ciudades grandes, `town`/`village` en poblaciones chicas.
+const NOMINATIM_URL = 'https://nominatim.openstreetmap.org/reverse'
+
+export async function obtenerUbicacion(coordenadas) {
+  if (!coordenadas) return null
+
+  try {
+    const { lat, lon } = coordenadas
+    const url = `${NOMINATIM_URL}?lat=${lat}&lon=${lon}&format=json&addressdetails=1&accept-language=es&zoom=10`
+    const respuesta = await fetch(url)
+    if (!respuesta.ok) throw new Error(`HTTP ${respuesta.status}`)
+
+    const datos = await respuesta.json()
+    const direccion = datos.address ?? {}
+
+    const municipio = direccion.city || direccion.town || direccion.village || direccion.municipality || direccion.hamlet
+    const provincia = direccion.province || direccion.state
+
+    if (!municipio && !provincia) return null
+
+    return { municipio: municipio ?? null, provincia: provincia ?? null, fuente: 'nominatim' }
+  } catch (error) {
+    console.error('Error obteniendo ubicación de Nominatim:', error.message)
+    return null
+  }
+}
+
 // --- Sol y luna (suncalc, cálculo local sin red) ---
 
 export function obtenerSolYLuna(fecha = new Date(), coordenadas = COORDENADAS_DEFECTO) {

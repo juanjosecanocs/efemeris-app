@@ -2,9 +2,10 @@ import { motion } from 'framer-motion'
 import IconoClima from '../icons/IconoClima'
 import { entradaEscala, elevarEnHover, pulsoIcono } from '../../utils/animaciones'
 
-export default function CardClima({ clima }) {
+export default function CardClima({ clima, ubicacion }) {
   const listo = clima.estado === 'listo'
   const tieneDatos = listo && clima.temperatura != null
+  const textoUbicacion = ubicacion && [ubicacion.municipio, ubicacion.provincia].filter(Boolean).join(', ')
 
   return (
     <motion.section
@@ -15,7 +16,17 @@ export default function CardClima({ clima }) {
       className="relative overflow-hidden rounded-3xl p-6 text-white shadow-tarjeta transition-shadow sm:p-8"
       style={{ background: clima.gradiente }}
     >
-      <p className="text-xs font-medium uppercase tracking-wider text-white/70">Clima ahora</p>
+      <div className="flex items-center justify-between gap-2">
+        <p className="text-xs font-medium uppercase tracking-wider text-white/70">Clima ahora</p>
+        {textoUbicacion && (
+          <p
+            className="flex items-center gap-1 truncate text-xs text-white/80"
+            title="Ubicación aproximada según tu GPS · Datos de ubicación © OpenStreetMap contributors"
+          >
+            <span aria-hidden="true">📍</span> {textoUbicacion}
+          </p>
+        )}
+      </div>
 
       <div className="mt-3 flex items-center justify-between gap-4">
         <div className="min-w-0">

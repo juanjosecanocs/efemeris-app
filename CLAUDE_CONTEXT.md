@@ -70,6 +70,8 @@
 - [x] URLs de Wikipedia en español (wikipediaUrl) en Personaje, Efeméride,
       Hito científico, Waku-Waku y Cronoteca — preferidas sobre Wikidata
       cuando existen (ver `enlacePreferido()` en `App.jsx`)
+- [x] Ubicación (municipio, provincia) mostrada en CardClima cuando el
+      usuario concede permiso de geolocalización — ver sección propia
 
 ---
 
@@ -325,6 +327,41 @@ Waku-Waku, 348/348 en Cronoteca.
 
 ---
 
+## 📍 UBICACIÓN (municipio/provincia en CardClima)
+
+**Qué es:** una línea pequeña ("📍 Almería, Almería") arriba a la derecha en
+`CardClima`, que confirma al usuario que el clima que está viendo corresponde
+a su posición real — no aparece nunca si no hay geolocalización real
+concedida (nunca se muestra para `COORDENADAS_DEFECTO`, sería engañoso).
+
+**Cómo funciona:** `obtenerUbicacion()` en `src/services/apiService.js` hace
+reverse geocoding contra **Nominatim** (`nominatim.openstreetmap.org`, sin
+API key, CORS permitido para uso desde el navegador — verificado con fetch
+real desde la página, no solo desde Node). El hook `useUbicacion()` en
+`App.jsx` lo dispara una sola vez, cuando `coordenadas` pasa de `null` a un
+valor real (no en cada navegación de día).
+
+**Por qué Nominatim y no la Geocoding API de OpenWeatherMap** (que ya usa la
+misma key que el clima): se probó reverse geocoding real contra Nominatim
+para varias coordenadas de España y da `address.city`/`town`/`village`
+(municipio) + `address.province` de forma directa y confiable. La API de
+OWM solo tiene un nivel administrativo (`state`) para España, que da la
+comunidad autónoma, no la provincia — no serviría para "municipio y
+provincia" tal como se pidió.
+
+**Comunidades uniprovinciales (Madrid, Asturias, Murcia, Navarra, La
+Rioja...):** Nominatim no devuelve `province` en estos casos porque
+coincide con la comunidad — el código cae a `address.state` cuando
+`address.province` no existe.
+
+**Atribución:** Nominatim/OpenStreetMap exige atribuir el origen de los
+datos de ubicación cuando se muestran. Se hizo vía `title` (tooltip) en el
+elemento, no como texto visible permanente — si en algún momento se usa la
+ubicación en un lugar más prominente de la UI, revisar si hace falta una
+atribución más visible.
+
+---
+
 ## 🐛 ISSUES CONOCIDOS / PENDIENTES
 
 ### Resueltos ✅
@@ -335,11 +372,31 @@ Waku-Waku, 348/348 en Cronoteca.
 - [x] Criterio de Cronoteca daba ~100% película — cambiado a priorizar no-película
 - [x] Enlaces a Wikipedia (en vez de Wikidata) extendidos a las 5 secciones
       con QID, sin re-correr `precalculate.js`
+- [x] PWA instalada en pantalla de inicio (iOS) no se actualizaba nunca —
+      `CACHE_NAME` en `public/service-worker.js` nunca cambiaba entre
+      deploys, así que los navegadores no tenían forma de detectar que había
+      un service worker nuevo (lo comparan byte a byte). **Cada deploy que
+      cambie algo cacheable tiene que subir el número de `CACHE_NAME`** —
+      si no, esto vuelve a pasar. De paso: `cronoteca-365dias.json` e
+      `histoku-365dias.json` no estaban en la lista de "datos vivos"
+      (red primero) y quedaban cacheados para siempre; y se agregó recarga
+      automática (`controllerchange` en `main.jsx`) para cuando sí se
+      detecta un service worker nuevo. iOS en modo standalone sigue siendo
+      poco confiable revisando actualizaciones por su cuenta — si a un
+      usuario no le actualiza, la solución es borrar la app de inicio y
+      volver a agregarla (o borrar los datos del sitio desde Ajustes →
+      Safari → Avanzado)
 
 ### Pendientes de validar 🔄
 - [ ] Performance en móviles lentos
 - [ ] Compatibilidad con navegadores antiguos
 - [ ] Pruebas en dispositivos reales (Android 8+, iOS 13+)
+- [ ] Ubicación en CardClima: se verificó que Nominatim responde bien desde
+      el navegador (fetch real, sin bloqueo de CORS) y que el build compila,
+      pero no se pudo probar con un permiso de geolocalización real
+      concedido (el entorno de test no tiene GPS) — confirmar en un
+      dispositivo real que el permiso del navegador + el flujo completo
+      terminan mostrando el municipio/provincia correctos
 
 ### Pendientes de Cronoteca 🔄
 - [ ] Enero: solo 3/31 días tienen obra real (el resto cae a sugerencia
@@ -432,6 +489,7 @@ git push origin main
 | Local | Curiosidades matemáticas | Generado | Aleatorio |
 | Local (verificado a mano) | Waku-Waku (curiosidad animal) | Manual | 78/365 (21.4%), rotan por día del año |
 | Wikidata SPARQL (`P577`) | Cronoteca (película/libro/canción/álbum) | Manual (`precalculate-cronoteca.js`) | 338/366 días día-exacto + 10 sugerencias de respaldo |
+| Nominatim (OpenStreetMap) | Ubicación (municipio/provincia) en CardClima | En vivo, en el cliente | Solo con geolocalización real concedida |
 
 ---
 
