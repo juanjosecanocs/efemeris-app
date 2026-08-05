@@ -1,11 +1,22 @@
 # CLAUDE_CONTEXT.md — Contexto del proyecto Efemeris
 
-### Wikidata SPARQL
-- **Endpoint:** `https://query.wikidata.org/sparql`
-- **Consultado por:** `precalculate.js` (genera datos-365dias.json)
-- **Datos obtenidos:** personajes nacidos, efemérides históricas, hitos científicos
-- **Rate limit:** 1 segundo entre consultas
-- **URLs capturadas:** wikidataUrl en JSON para cada dato
+### Wikidata
+- **Endpoint SPARQL:** `https://query.wikidata.org/sparql` — usado por
+  `precalculate.js` (personajes, efemérides, hitos) y
+  `scripts/precalculate-cronoteca.js` (obras día-exactas vía `P577`)
+- **Endpoint REST (`w/api.php`, `action=wbgetentities`)** — usado por los
+  scripts `scripts/add-wikipedia-*.js` para resolver el sitelink `eswiki` de
+  QIDs ya conocidos. Rate limit más agresivo que el SPARQL endpoint: corta
+  con "You are making too many requests" tras varios lotes seguidos, incluso
+  con ~1s de espera — usar lotes de ~30 IDs con 2-3s de espera entre lotes
+- **Rate limit SPARQL:** ~1 segundo entre consultas evita timeouts; consultas
+  de un solo paso sobre clases amplias (todos los humanos, todas las
+  películas) sí dan timeout — ver el patrón de dos pasos (candidatos baratos
+  + ranking por `sitelinks`) usado en `precalculate.js` y
+  `precalculate-cronoteca.js`
+- **URLs capturadas:** `wikidataUrl` (siempre) y `wikipediaUrl` (cuando el
+  QID tiene sitelink en español) en cada dato — ver `enlacePreferido()` en
+  `App.jsx`
 
 ---
 
@@ -31,8 +42,8 @@
 - [x] Personajes (Wikidata)
 - [x] Efemérides históricas (Wikidata)
 - [x] Hitos científicos (Wikidata)
-- [x] Citas motivacionales (Quotable.io + dataset español)
-- [x] Refranes (dataset CSV)
+- [x] Citas motivacionales (array local en `contenidoLocal.js`, sin API externa)
+- [x] Refranes (array local en `contenidoLocal.js`, dichos auténticos verificados a mano)
 - [x] Curiosidades matemáticas (generadas localmente)
 - [x] Waku-Waku: curiosidad animal diaria (contenido local, ver sección propia)
 - [x] Cronoteca: recomendación artística día-exacta (Wikidata, ver sección propia)
@@ -86,6 +97,37 @@ node merge-santoral.js
 **Tiempo:** ~10-15 minutos (solo consultas faltantes)
 **Input:** `Santoral_Completo_Ano.xlsx` (desde `/mnt/user-data/uploads/`)
 **Output:** `public/datos-365dias.json` (actualizado)
+**Depende de:** `dias-qid.js` (mapa estático `MM-DD -> QID` de cada "día
+calendario" en Wikidata, usado junto con `P841` para resolver santoral sin
+escanear todo Wikidata por fecha — no es un script que se corra, es un dato
+generado una sola vez que se importa)
+
+### `update-urls.js`
+**Propósito:** Agregar `wikidataUrl` a `personaje`/`efemeride`/al primer
+`hitosCientificos` de `public/datos-365dias.json` sin regenerar todo el
+archivo — busca por el nombre/título ya guardado (no por QID, porque
+`precalculate.js` nunca lo guardó) contra Wikidata.
+
+**Uso:**
+```bash
+node update-urls.js
+```
+
+**Cuándo usarlo:** si algún personaje/efeméride/hito quedó sin
+`wikidataUrl` (y por lo tanto sin poder resolver `wikipediaUrl` con
+`scripts/add-wikipedia-datos365.js`), este es el script que lo busca y lo
+completa.
+
+### `generate-histoku-365.js`
+**Propósito:** Generar los 365 puzzles de Histoku (deducción histórica),
+con temática distinta según el mes del año.
+
+**Uso:**
+```bash
+node generate-histoku-365.js
+```
+
+**Output:** `public/histoku-365dias.json`
 
 ### `scripts/precalculate-cronoteca.js`
 **Propósito:** Generar/ampliar `public/cronoteca-365dias.json` (recomendación
@@ -187,10 +229,10 @@ repetir ese rebalanceo sobre datos nuevos generados con el criterio viejo.
 curiosidad sobre animales, elegida de forma determinística por día del año.
 
 **Dónde vive:** `CURIOSIDADES_ANIMALES` en `src/data/contenidoLocal.js` — un
-array plano de `{ titulo, descripcion, wikidataUrl }`, sin archivo JSON
-propio ni script de generación. Se elige con `elegirPorDia()`, igual que
-`CITAS_MOTIVACIONALES`/`REFRANES`. Se renderiza con el `CardDinamica`
-genérico (no tiene componente propio).
+array plano de `{ titulo, descripcion, wikidataUrl, wikipediaUrl }`, sin
+archivo JSON propio ni script de generación. Se elige con `elegirPorDia()`,
+igual que `CITAS_MOTIVACIONALES`/`REFRANES`. Se renderiza con el
+`CardDinamica` genérico (no tiene componente propio).
 
 **Por qué es contenido local y no un `precalculate-waku-waku.js` con
 Wikidata en vivo:** se probó — las fechas de "descripción de especie" en
@@ -393,7 +435,23 @@ git push origin main
 
 ---
 
-## 🔐 VARIABLES DE ENTORNO ---
+## 🔐 VARIABLES DE ENTORNO
+
+Se configuran en `.env` (no versionado; copiar desde `.env.example`). Todas
+son `VITE_*` porque el proyecto es una PWA sin backend — quedan visibles en
+el bundle del cliente, así que la API key de OpenWeatherMap no debe
+considerarse secreta.
+
+| Variable | Requerida | Default si falta | Uso |
+|---|---|---|---|
+| `VITE_OPENWEATHER_API_KEY` | Sí, para clima real | — (cae a datos de fallback con warning en consola) | Clima actual y pronóstico (`src/services/apiService.js`) |
+| `VITE_API_URL` | No | `https://api.openweathermap.org` | Solo si se necesita apuntar a otra URL base |
+| `VITE_LATITUDE` | No | `36.8` (Almería) | Ubicación por defecto para el clima |
+| `VITE_LONGITUDE` | No | `-2.4` (Almería) | Ubicación por defecto para el clima |
+
+Los scripts de precálculo (`precalculate.js`, `precalculate-cronoteca.js`,
+etc.) no usan variables de entorno: consultan Wikidata de forma anónima, sin
+API key.
 
 ## 👥 CONTRIBUCIONES FUTURAS
 
@@ -420,5 +478,10 @@ Si otro desarrollador o Claude quiere mejorar el proyecto:
 ---
 
 **Última revisión:** Agosto 5, 2026  
-**Revisor:** Claude (sesión Waku-Waku + Cronoteca)  
+**Revisor:** Claude (sesión Waku-Waku + Cronoteca + enlaces Wikipedia +
+ampliación de contenido local; incluye auditoría completa del documento,
+no solo lo agregado en la sesión — se corrigieron referencias desactualizadas
+a Quotable.io/CSV que ya no existían en el código, se documentaron
+`update-urls.js`/`generate-histoku-365.js`/`dias-qid.js` que faltaban, y se
+completó la sección de variables de entorno que había quedado vacía)  
 **Siguiente revisión:** Cuando se agreguen nuevas features significativas
