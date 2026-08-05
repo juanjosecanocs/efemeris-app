@@ -105,6 +105,18 @@ function useRelojEnVivo() {
   return ahora
 }
 
+// Preferimos el artículo en Wikipedia en español (más legible que la ficha
+// de datos de Wikidata) cuando el QID tiene sitelink en eswiki; si no,
+// mantiene el enlace a Wikidata de siempre. `obj` es cualquier entrada con
+// wikidataUrl/wikipediaUrl (personaje, efemeride, hito, wakuWaku, obra de
+// Cronoteca).
+function enlacePreferido(obj) {
+  return {
+    wikidataUrl: obj?.wikipediaUrl ?? obj?.wikidataUrl,
+    enlaceFuente: obj?.wikipediaUrl ? 'Wikipedia' : 'Wikidata',
+  }
+}
+
 function esMismoDiaCalendario(a, b) {
   return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate()
 }
@@ -188,8 +200,8 @@ function App() {
   // opcionales (vienen del Martirologio Romano vía merge-santoral.js) y solo
   // los usa la card de santoral.
   const datosPorItem = {
-    personaje: { titulo: personaje?.nombre, contenido: personaje?.descripcion, wikidataUrl: personaje?.wikidataUrl },
-    efemeride: { titulo: efemeride?.titulo, contenido: efemeride?.descripcion, wikidataUrl: efemeride?.wikidataUrl },
+    personaje: { titulo: personaje?.nombre, contenido: personaje?.descripcion, ...enlacePreferido(personaje) },
+    efemeride: { titulo: efemeride?.titulo, contenido: efemeride?.descripcion, ...enlacePreferido(efemeride) },
     cita: { titulo: cita, contenido: null },
     santoral: {
       titulo: santoralInfo?.nombrePrincipal || (santoralNombres.length > 0 ? santoralNombres.join(', ') : null),
@@ -198,9 +210,9 @@ function App() {
       otros: santoralInfo?.otros,
     },
     refran: { titulo: refran, contenido: null },
-    hito: { titulo: hito?.titulo, contenido: hito?.descripcion, autor: hito?.autor, wikidataUrl: hito?.wikidataUrl },
+    hito: { titulo: hito?.titulo, contenido: hito?.descripcion, autor: hito?.autor, ...enlacePreferido(hito) },
     curiosidad: { titulo: curiosidad.mensaje, contenido: null },
-    wakuWaku: { titulo: wakuWaku.titulo, contenido: wakuWaku.descripcion, wikidataUrl: wakuWaku.wikidataUrl },
+    wakuWaku: { titulo: wakuWaku.titulo, contenido: wakuWaku.descripcion, ...enlacePreferido(wakuWaku) },
     // cronotecaDia = obra real verificada para esta fecha exacta; si no existe
     // (día sin obra día-precisa en Wikidata), cae a una sugerencia genérica en
     // vez de "sin registros" — el pill de tipo deja explícito que no es del día.
@@ -211,11 +223,7 @@ function App() {
         contenido: obra.impacto ? `${obra.descripcion} ${obra.impacto}.` : obra.descripcion,
         autor: obra.artista,
         tipo: cronotecaDia ? obra.tipo : `${obra.tipo} · sugerencia`,
-        // Preferimos el artículo en Wikipedia en español (más legible que la
-        // ficha de datos de Wikidata); si el QID no tiene sitelink en eswiki,
-        // cae al enlace de Wikidata como hasta ahora.
-        wikidataUrl: obra.wikipediaUrl ?? obra.wikidataUrl,
-        enlaceFuente: obra.wikipediaUrl ? 'Wikipedia' : 'Wikidata',
+        ...enlacePreferido(obra),
       }
     })(),
   }

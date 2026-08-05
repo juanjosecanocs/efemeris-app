@@ -56,6 +56,9 @@
 - [x] Enlaces clickeables en CardDinamica
 - [x] Santoral con tipo de festividad + otros santos
 - [x] Fusión de Excel Martirologio Romano con JSON actual
+- [x] URLs de Wikipedia en español (wikipediaUrl) en Personaje, Efeméride,
+      Hito científico, Waku-Waku y Cronoteca — preferidas sobre Wikidata
+      cuando existen (ver `enlacePreferido()` en `App.jsx`)
 
 ---
 
@@ -147,6 +150,27 @@ node scripts/add-wikipedia-cronoteca.js
 `precalculate-cronoteca.js` (los días nuevos no traen `wikipediaUrl` hasta
 que se corre este script sobre ellos).
 
+### `scripts/add-wikipedia-datos365.js`
+**Propósito:** mismo enfoque que `add-wikipedia-cronoteca.js` pero para
+`public/datos-365dias.json` — agrega `wikipediaUrl` a `personaje`,
+`efemeride` y cada elemento de `hitosCientificos`, resolviendo el sitelink
+`eswiki` de los QIDs que ya están en `wikidataUrl`. **No corre SPARQL ni
+toca `precalculate.js`**, solo `wbgetentities` sobre QIDs ya conocidos — por
+eso no hace falta re-precalcular los 365 días para tener este enlace.
+
+**Uso:**
+```bash
+node scripts/add-wikipedia-datos365.js
+```
+
+**Nota sobre rate limit:** la API de Wikidata (`wbgetentities`) corta con
+"You are making too many requests" tras varios lotes seguidos incluso con
+~1s de espera entre ellos — el script usa lotes de 30 QIDs con 3s de espera,
+y aun así puede fallar algún lote puntual (quedan sin `wikipediaUrl`, no se
+inventa nada). Si hace falta reintentar, correrlo de nuevo es seguro: solo
+completa los campos que todavía no tengan `wikipediaUrl`, no vuelve a
+consultar los que ya se resolvieron.
+
 ### `scripts/diversify-cronoteca.js`
 **Propósito:** Script puntual (no forma parte del flujo normal) usado una
 sola vez para rebalancear los 335 días Feb-Dic que se habían generado antes
@@ -173,8 +197,11 @@ Wikidata en vivo:** se probó — las fechas de "descripción de especie" en
 Wikidata (`P574`) casi nunca tienen precisión de día (año solamente), así
 que no hay forma real de tener "un animal distinto verificado por cada día
 del calendario". Cada `wikidataId` de la lista actual se verificó a mano
-contra la API de Wikidata antes de agregarse (18 entradas al cierre de esta
-sesión).
+contra la API de Wikidata antes de agregarse (78 entradas al cierre de esta
+sesión — 78/365 ≈ 21%, cada una con `wikipediaUrl` también verificado. La
+verificación por QID es el cuello de botella real para seguir creciendo:
+llegar a 365 supondría verificar ~290 más contra la API, con el mismo riesgo
+de rate-limit ya documentado en Cronoteca).
 
 **Para agregar más curiosidades:** sumar objetos al array
 `CURIOSIDADES_ANIMALES`, verificando el QID contra Wikidata (no confiar en
@@ -206,9 +233,15 @@ precisión que no existe.
 
 **Enlace:** prioriza el artículo en Wikipedia en español (`wikipediaUrl`,
 sitelink `eswiki` real de cada QID) sobre la ficha de Wikidata; si el QID no
-tiene `eswiki`, cae a `wikidataUrl`. El resto de las secciones de la app
-(Personaje, Efeméride, Hito, Waku-Waku) siguen enlazando a Wikidata — el
-cambio a Wikipedia fue explícitamente solo para Cronoteca.
+tiene `eswiki`, cae a `wikidataUrl`. Este mismo criterio se extendió después
+a Personaje, Efeméride, Hito científico y Waku-Waku (helper `enlacePreferido()`
+en `App.jsx`, compartido por las 5 secciones) — **no hizo falta volver a
+correr `precalculate.js`**: los QIDs ya estaban en `wikidataUrl` desde antes,
+así que alcanzó con un script de enriquecimiento aparte
+(`scripts/add-wikipedia-datos365.js`) que solo resuelve el sitelink de cada
+QID ya existente. Cobertura: 967/1051 campos con Wikipedia en `datos-365dias.json`
+(el resto son QIDs sin artículo en español real, no fallos), 19/19 en
+Waku-Waku, 348/348 en Cronoteca.
 
 ### Decisiones/errores importantes de esta sesión (leer antes de tocar Cronoteca)
 
@@ -258,6 +291,8 @@ cambio a Wikipedia fue explícitamente solo para Cronoteca.
 - [x] Service worker zombie — Resuelto en build
 - [x] QIDs fabricados en el dataset beta de Cronoteca — verificados y corregidos
 - [x] Criterio de Cronoteca daba ~100% película — cambiado a priorizar no-película
+- [x] Enlaces a Wikipedia (en vez de Wikidata) extendidos a las 5 secciones
+      con QID, sin re-correr `precalculate.js`
 
 ### Pendientes de validar 🔄
 - [ ] Performance en móviles lentos
@@ -303,12 +338,18 @@ cambio a Wikipedia fue explícitamente solo para Cronoteca.
     tienen vacío
 14. **Ampliar enero** — correr el generador algorítmico también sobre enero
     para subir del 3/31 actual (el resto son sugerencias genéricas)
-15. **`wikipediaUrl` para Personaje/Efeméride/Hito/Waku-Waku** — si se
-    quiere el mismo cambio de enlace que Cronoteca, hay que tocar
-    `precalculate.js` (no genera sitelinks hoy) y volver a correr la
-    precalculación completa de los 365 días — ver sección Cronoteca más
-    arriba, se decidió explícitamente dejarlo fuera de esta sesión por el
-    costo de volver a correr `precalculate.js` entero
+
+### Contenido local (Waku-Waku / Citas / Refranes)
+15. **Seguir ampliando Waku-Waku** hacia 365 — quedó en 78/365 (21%) por el
+    costo de verificar cada QID uno por uno contra Wikidata; agregar más en
+    tandas, siempre verificando (no confiar en QIDs de memoria)
+16. **Seguir ampliando Refranes** — quedó en 144/365 (39.5%) porque el corpus
+    de refranes españoles genuinos y bien conocidos que se puede recordar
+    con confianza tiene un techo real; sumar más implica investigar fuentes
+    en vez de solo generar contenido, para no inventar "refranes" falsos
+17. **Citas motivacionales** ya está en 349/365 (95.6%) — es la más barata
+    de ampliar (no depende de verificación externa), se podría cerrar el
+    resto si hace falta
 
 ---
 
@@ -344,9 +385,10 @@ git push origin main
 | OpenWeatherMap | Clima en tiempo real | Cada 3 horas | Almería (configurable) |
 | suncalc | Astrología (sol/luna) | Cálculo local | Preciso |
 | Martirologio Romano | Santoral | Fijo anual | 366 días |
-| Dataset CSV | Refranes, citas | Manual | ~365 |
+| Local (`contenidoLocal.js`) | Citas motivacionales | Manual | 349/365 (95.6%) |
+| Local (`contenidoLocal.js`) | Refranes (auténticos, no inventados) | Manual | 144/365 (39.5%) |
 | Local | Curiosidades matemáticas | Generado | Aleatorio |
-| Local (verificado a mano) | Waku-Waku (curiosidad animal) | Manual | 18 obras, rotan por día del año |
+| Local (verificado a mano) | Waku-Waku (curiosidad animal) | Manual | 78/365 (21.4%), rotan por día del año |
 | Wikidata SPARQL (`P577`) | Cronoteca (película/libro/canción/álbum) | Manual (`precalculate-cronoteca.js`) | 338/366 días día-exacto + 10 sugerencias de respaldo |
 
 ---
