@@ -11,7 +11,11 @@
     "precalculate": "node precalculate.js",
     "generate-histoku": "node generate-histoku-365.js",
     "generate-favicon": "node src/scripts/generate-favicon.js",
-    "prebuild": "npm run generate-favicon"
+    "prebuild": "npm run generate-favicon",
+    "cronoteca:generate": "node scripts/precalculate-cronoteca.js",
+    "cronoteca:generate:full": "node scripts/precalculate-cronoteca.js --full",
+    "cronoteca:validate": "node scripts/update-cronoteca-urls.js --validate",
+    "cronoteca:fix": "node scripts/update-cronoteca-urls.js"
   },
   "dependencies": {
     "date-fns": "^4.4.0",

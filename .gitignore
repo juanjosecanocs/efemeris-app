@@ -27,3 +27,6 @@ Thumbs.db
 
 # vite
 .vite/
+
+# cachés locales de scripts de precálculo
+scripts/.cache-*/

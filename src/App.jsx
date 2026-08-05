@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import './styles/theme.css'
 import { claveFecha, diaDelAnio } from './utils/diaCalculos'
-import { CITAS_MOTIVACIONALES, REFRANES, elegirPorDia } from './data/contenidoLocal'
+import { CITAS_MOTIVACIONALES, REFRANES, CURIOSIDADES_ANIMALES, CRONOTECA_SUGERENCIAS, elegirPorDia } from './data/contenidoLocal'
 import { obtenerClima, obtenerSolYLuna, generarCuriosidadMatematica } from './services/apiService'
 import { transicionDia } from './utils/animaciones'
 import { ITEMS_MENU, ITEM_POR_DEFECTO } from './utils/layoutConstants'
@@ -14,17 +14,23 @@ import Menu from './components/Menu'
 import CardDinamica from './components/CardDinamica'
 
 const DATOS_URL = '/datos-365dias.json'
+// Cronoteca vive en su propio archivo (no en datos-365dias.json) a propósito:
+// es un módulo independiente que precalculate.js no toca. Cubre 338/366 días
+// con obra real día-exacta (verificada contra Wikidata); los ~28 días
+// restantes (obras sin precisión de día en Wikidata) muestran una sugerencia
+// de CRONOTECA_SUGERENCIAS en vez de "sin registros" — ver datosPorItem.
+const CRONOTECA_URL = '/cronoteca-365dias.json'
 const UMBRAL_SWIPE = 80
 const DIAS_PREDICCION_CLIMA = 5
 
-function useDatosPrecalculados() {
+function useDatosPrecalculados(url) {
   const [datos, setDatos] = useState(null)
   const [error, setError] = useState(null)
 
   useEffect(() => {
     let cancelado = false
 
-    fetch(DATOS_URL)
+    fetch(url)
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`)
         return res.json()
@@ -39,7 +45,7 @@ function useDatosPrecalculados() {
     return () => {
       cancelado = true
     }
-  }, [])
+  }, [url])
 
   return { datos, error }
 }
@@ -112,7 +118,10 @@ function App() {
   // Posición/alto real del botón de menú activo (medido por Menu.jsx), para
   // dibujar el puente de color que une visualmente el item con CardDinamica.
   const [rectSeleccionado, setRectSeleccionado] = useState({ top: 0, alto: 0 })
-  const { datos, error } = useDatosPrecalculados()
+  const { datos, error } = useDatosPrecalculados(DATOS_URL)
+  // No bloqueante: si falla o todavía no cargó, cronoteca cae al
+  // mensajeSinDatos como cualquier día sin ese contenido.
+  const { datos: cronotecaDatos } = useDatosPrecalculados(CRONOTECA_URL)
   const coordenadas = useCoordenadas()
   const clima = useClima(fecha, coordenadas)
   const ahora = useRelojEnVivo()
@@ -137,6 +146,7 @@ function App() {
   // cae al 28 de febrero. Cualquier otro día faltante es porque la precalculación
   // sigue en curso (o, para fechas futuras, porque Wikidata no "predice" nada).
   const infoDia = datos?.[clave] ?? (clave === '02-29' ? datos?.['02-28'] : undefined)
+  const cronotecaDia = cronotecaDatos?.[clave]
 
   const solLuna = useMemo(
     () => obtenerSolYLuna(fecha, coordenadas ?? undefined),
@@ -145,6 +155,8 @@ function App() {
   const curiosidad = useMemo(() => generarCuriosidadMatematica(numeroDiaAnio), [numeroDiaAnio])
   const cita = useMemo(() => elegirPorDia(CITAS_MOTIVACIONALES, numeroDiaAnio), [numeroDiaAnio])
   const refran = useMemo(() => elegirPorDia(REFRANES, numeroDiaAnio), [numeroDiaAnio])
+  const wakuWaku = useMemo(() => elegirPorDia(CURIOSIDADES_ANIMALES, numeroDiaAnio), [numeroDiaAnio])
+  const cronotecaSugerencia = useMemo(() => elegirPorDia(CRONOTECA_SUGERENCIAS, numeroDiaAnio), [numeroDiaAnio])
 
   if (error) {
     return (
@@ -188,6 +200,24 @@ function App() {
     refran: { titulo: refran, contenido: null },
     hito: { titulo: hito?.titulo, contenido: hito?.descripcion, autor: hito?.autor, wikidataUrl: hito?.wikidataUrl },
     curiosidad: { titulo: curiosidad.mensaje, contenido: null },
+    wakuWaku: { titulo: wakuWaku.titulo, contenido: wakuWaku.descripcion, wikidataUrl: wakuWaku.wikidataUrl },
+    // cronotecaDia = obra real verificada para esta fecha exacta; si no existe
+    // (día sin obra día-precisa en Wikidata), cae a una sugerencia genérica en
+    // vez de "sin registros" — el pill de tipo deja explícito que no es del día.
+    cronoteca: (() => {
+      const obra = cronotecaDia ?? cronotecaSugerencia
+      return {
+        titulo: obra.titulo,
+        contenido: obra.impacto ? `${obra.descripcion} ${obra.impacto}.` : obra.descripcion,
+        autor: obra.artista,
+        tipo: cronotecaDia ? obra.tipo : `${obra.tipo} · sugerencia`,
+        // Preferimos el artículo en Wikipedia en español (más legible que la
+        // ficha de datos de Wikidata); si el QID no tiene sitelink en eswiki,
+        // cae al enlace de Wikidata como hasta ahora.
+        wikidataUrl: obra.wikipediaUrl ?? obra.wikidataUrl,
+        enlaceFuente: obra.wikipediaUrl ? 'Wikipedia' : 'Wikidata',
+      }
+    })(),
   }
 
   const colorSeleccionado = ITEMS_MENU.find((item) => item.id === itemSeleccionado)?.color

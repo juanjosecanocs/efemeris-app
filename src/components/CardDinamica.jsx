@@ -75,11 +75,11 @@ export default function CardDinamica({ itemSeleccionado, datos, color, mensajeSi
                 href={entrada.wikidataUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                title="Abre el artículo en Wikidata (nueva pestaña)"
+                title={`Abre el artículo en ${entrada.enlaceFuente ?? 'Wikidata'} (nueva pestaña)`}
                 className="mt-4 inline-flex items-center gap-1.5 rounded-lg border px-3 py-2 text-sm font-semibold transition-all duration-200 hover:translate-x-0.5 hover:shadow-md sm:w-auto"
                 style={{ borderColor: color, color }}
               >
-                <span aria-hidden="true">📖</span> Ver en Wikidata →
+                <span aria-hidden="true">📖</span> Ver en {entrada.enlaceFuente ?? 'Wikidata'} →
               </a>
             )}
           </>

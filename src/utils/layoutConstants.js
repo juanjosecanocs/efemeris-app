@@ -8,6 +8,8 @@ export const ITEMS_MENU = [
   { id: 'refran', etiqueta: 'Refrán', icono: '🎭', color: '#10B981' },
   { id: 'hito', etiqueta: 'Hito científico', icono: '🔬', color: '#3B82F6' },
   { id: 'curiosidad', etiqueta: 'Curiosidad matemática', icono: '🔢', color: '#F97316' },
+  { id: 'wakuWaku', etiqueta: 'Waku-Waku', icono: '🦁', color: '#0D9488' },
+  { id: 'cronoteca', etiqueta: 'Cronoteca', icono: '🎬', color: '#0EA5E9' },
   { id: 'histoku', etiqueta: 'Histoku', icono: '🔍', color: '#DC2626' },
 ]
 
